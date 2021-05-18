@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load embed_video_tags %}
+{% block mdcss %}
+<link rel="stylesheet" href="{% static 'm-detail.css'%}">
+{% endblock mdcss %}
+{% block content %}
+
+<div class="container movie-details">
+    <div class="row">
+        <div class="col-md-8 left-box">
+            <h1>{{movie_detail.name}}</h1>
+            <p>
+            {{movie_detail.detail}}
+            </p>
+            <h3>Diễn viên</h3>
+            <p>{{movie_detail.cast}}</p>
+            <h3>Đạo diễn</h3>
+            <p>{{movie_detail.director}}</p>
+            <a href="{% url 'booksite' %}">Mua vé</a>
+            <a href="{{movie_detail.trailer}}" class="trailer-btn">Trailer</a>
+        </div>
+        <div class="col-md-4 text-center">
+            <img src="{{movie_detail.image.url}}" class="movie-img">
+        </div>
+
+    </div>
+</div>
+<div class="bg-white border-bottom sticky-movie-bars">
+    <div class="container">
+        <ul class="nav nav-tabs border-bottom-0">
+            <li class="nav-item">
+                <a href="{% url 'MovieDetail' movie_detail.id %}" class="nav-link text-center active">
+                    Thông tin phim
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'home' %}" class="nav-link text-center">
+                    Lịch chiếu
+                </a>
+            </li>
+            <li class="nav-item d-none d-sm-block">
+                <a href="" class="nav-link text-center">
+                    Tin tức
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'booksite' %}" class="nav-link text-center">
+                        Mua vé
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+        <div class="row">
+            <div class="col-md-8  left-box ">
+                <div class="js-video youtube widescreen mb-4">{% video movie_detail.trailer '750x500' %}</div>
+
+                </div>
+            </div>
+        </div>
+{% endblock content %}
