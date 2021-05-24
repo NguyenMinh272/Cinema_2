@@ -4,7 +4,7 @@ from .models import *
 
 admin.site.register(Category)
 admin.site.register(ShowTime)
-admin.site.register(bookmovie)
+admin.site.register(Movie)
 admin.site.register(Seat)
 
 

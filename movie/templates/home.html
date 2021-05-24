@@ -15,6 +15,7 @@
 <div class="card card-sm mb-3 card-sponsored sponsored-movie-tracking">
   <span class="sprite featured"></span>
    {% for post in posts %}
+    <div class="card" >
         <div class="card-body">
         <div class="row" style="padding-left:100px;">
             <div class="col col-sm-2 ">
@@ -23,11 +24,11 @@
                 </a>
             </div>
             <div class="col ml-n2">
-                <h4 class="card-title mb-1 name">
-                    <a href="{% url 'MovieDetail' post.id %}">
+                <h3 class="card-title mb-1 name">
+                    <a href="{% url 'MovieDetail' post.id %}" style="text-decoration: none!important; color: #000000; ">
                         {{post.name}}
                     </a>
-                </h4>
+                </h3>
 
                 <p class="card-text small text-muted mb-0">
                   Face Off ·
@@ -52,6 +53,8 @@
 
         </div>
         </div>
+    </div>
   {% endfor %}
 </div>
+
 {% endblock content %}

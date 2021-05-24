@@ -6,26 +6,46 @@
 {% endblock mdcss %}
 {% block content %}
 
-<div class="container movie-details">
-    <div class="row">
-        <div class="col-md-8 left-box">
-            <h1>{{movie_detail.name}}</h1>
-            <p>
-            {{movie_detail.detail}}
-            </p>
-            <h3>Diễn viên</h3>
-            <p>{{movie_detail.cast}}</p>
-            <h3>Đạo diễn</h3>
-            <p>{{movie_detail.director}}</p>
-            <a href="{% url 'booksite' %}">Mua vé</a>
-            <a href="{{movie_detail.trailer}}" class="trailer-btn">Trailer</a>
+<div class="bg-dark border-bottom text-white featured-movie" style="background-color:#242333 !important; width:100%; height: 400px;">
+    <div class="container pt-3 pb-3">
+        <div class="row row-sm">
+            <div class="d-none d-sm-block col-2">
+                <a href="" title="{{movie_detail.name}}">
+                    <img alt="{{movie_detail.name}}" src="{{movie_detail.image.url}}" style="width:170px; height:250px; padding-top:12px; box-shadow: -4px 4px 5px 0 #000;">
+                </a>
+            </div>
+            <div class="col-12 col-sm-10">
+                <div class="mb-3 text-sm-left">
+                    <h1 class="mb-0 text-truncate">
+                        <a href="{{movie_detail.name}}" title="{{movie_detail.name}}", style="color: #ffffff; text-decoration:none ">
+                            {{movie_detail.name}}
+                        </a>
+                    </h1>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-7">
+                        <p class="mb-3 text-justify" style="text-align: justify!important">{{movie_detail.detail}}</p>
+                    </div>
+                    <div class="col-12 col-lg-5">
+                        <p class="mb-2"  >
+                            <strong > Diễn viên</strong><br>
+                            <span style="color: #f33636;">
+                              {{movie_detail.cast}}
+                            </span>
+                        </p>
+                        <p class="mb-2">
+                            <strong> Đạo diễn</strong><br>
+                            <span style="color: #f33636;">
+                                {{movie_detail.director}}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4 text-center">
-            <img src="{{movie_detail.image.url}}" class="movie-img">
-        </div>
-
     </div>
 </div>
+
 <div class="bg-white border-bottom sticky-movie-bars">
     <div class="container">
         <ul class="nav nav-tabs border-bottom-0">
@@ -35,7 +55,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{% url 'home' %}" class="nav-link text-center">
+                <a href="{% url 'Home' %}" class="nav-link text-center">
                     Lịch chiếu
                 </a>
             </li>

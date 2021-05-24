@@ -13,7 +13,7 @@
       <label>Đặt vé:</label>
       <select id="movie">
       {% for movie in movies %}
-        <option id="{{movie.name}}" {% if forloop.counter == 0 %} selected {% endif %} value="{{movie.price}}">{{movie.name}} ({{movie.price}}.000) </option>
+        <option id="{{movie.name}}" {% if forloop.counter == 0 %} selected {% endif %} value="{{movie.price}}">{{movie.title}} ({{movie.price}}.000) </option>
       {% endfor %}
 
 

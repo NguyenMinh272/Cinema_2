@@ -128,6 +128,9 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# payment
+PAYSTACK_SECRET=os.environ.get("PAYSTACK_SECRET")
+PAYSTACK_IP=["52.31.139.75", "52.49.173.169", "52.214.14.220"]
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
