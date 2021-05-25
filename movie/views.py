@@ -21,7 +21,7 @@ def MovieList(request):
         'posts': posts,
 
     }
-    return render(request, 'movie_list.html', context)
+    return render(request, 'index.html', context)
 
 def MovieDetail(request,id):
     movie_detail = MoviePost.objects.get(id=id)
