@@ -38,18 +38,7 @@ def booksite(request):
         "movies":movies
     })
 
-@csrf_exempt
-def occupiedSeats(request):
-    data=json.loads(request.body)
 
-    movie=Movie.objects.get(title=data["movie_title"])
-    occupied=Movie.booked_seats.all()
-    occupied_seat=list(map(lambda seat : seat.seat_no - 1,occupied))
-
-    return JsonResponse({
-        "occupied_seats":occupied_seat,
-        "movie":str(movie)
-    })
 
 
 
