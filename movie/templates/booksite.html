@@ -16,24 +16,9 @@
   <div class="content">
     <label class="title" for="">Booking online</label>
     <select name="" id="film">
-      <option value="12">1984 <span class="price"> € 12.00</span></option>
-      <option value="11">Matrix <span class="price"> € 11.00</span></option>
-      <option value="13">After The Rain <span class="price"> € 13.00</span></option>
-      <option value="14">Il Corvo <span class="price"> € 14.00</span></option>
-      <option value="16">Essi Vivono <span class="price"> € 16.00</span></option>
-      <option value="22">Free solo <span class="price"> € 22.00</span></option>
-      <option value="33">Idiocracy <span class="price"> € 33.00</span></option>
-      <option value="10">Public enemy <span class="price"> € 10.00</span></option>
-      <option value="12">Jason Bourne <span class="price"> € 12.00</span></option>
-      <option value="9">La verità negata <span class="price"> € 9.00</span></option>
-      <option value="18">Point Break <span class="price"> € 18.00</span></option>
-      <option value="12">The Net <span class="price"> € 12.00</span></option>
-      <option value="13">Braveheart <span class="price"> € 13.00</span></option>
-      <option value="16">The Trumanhow <span class="price"> € 16.00</span></option>
-      <option value="17">Oblivion <span class="price"> € 17.00</span></option>
-      <option value="19">Transcendence <span class="price"> € 19.00</span></option>
-      <option value="12">The Listening <span class="price"> € 12.00</span></option>
-      <option value="20">V <span class="price"> € 20.00</span></option>
+       {% for movie in movies %}
+        <option id="{{movie.name}}" {% if forloop.counter == 0 %} selected {% endif %} value="{{movie.price}}">{{movie.title}} ({{movie.price}}.000) </option>
+      {% endfor %}
     </select>
   </div>
 

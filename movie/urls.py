@@ -10,7 +10,7 @@ urlpatterns = [
     path('booksite/', booksite, name='booksite'),
     path('movie-detail-<int:id>/', MovieDetail, name='MovieDetail'),
     path('occupied/', occupiedSeats, name="occupied_seat"),
-    path('payment/',makePayement,name="payment"),
+
 
 
 
