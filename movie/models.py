@@ -1,5 +1,6 @@
 from django.db import models
 from embed_video.fields import EmbedVideoField
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     title = models.CharField(max_length=40)
@@ -10,13 +11,26 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
-class ShowTime(models.Model):
-    time = models.TimeField()
+
+class Seat(models.Model): #chỗ ngồi
+    seat_name=models.CharField(max_length=10)
+    seat_detail=models.CharField(max_length=200)
 
     def __str__(self):
-        return str(self.time)
+        return self.seat_name
 
-class MoviePost(models.Model):
+class Room(models.Model): #phòng chiếu
+    room_name= models.CharField(max_length=20)
+    room_detail=models.CharField(max_length=200)
+
+
+    class Meta:
+        verbose_name_plural = 'Room'
+
+    def __str__(self):
+        return self.room_name
+
+class MoviePost(models.Model): #film
     lang_choice = (
         ('Anh', 'English'),
         ('Việt', 'VietNam'),
@@ -32,7 +46,7 @@ class MoviePost(models.Model):
     run_length = models.IntegerField(help_text="Enter run length in minutes")
     trailer = EmbedVideoField()
     image = models.ImageField(null=True, blank=True, upload_to='media')
-    time = models.ManyToManyField(ShowTime)
+
 
     class Meta:
         verbose_name_plural = 'MoviePost'
@@ -40,42 +54,33 @@ class MoviePost(models.Model):
     def __str__(self):
         return self.name
 
-class Movie(models.Model):
-    title = models.ForeignKey(MoviePost, on_delete=models.CASCADE)
+class ShowTime(models.Model):  # Suất chiếu
+    time = models.TimeField()
+    movie = models.ForeignKey(MoviePost, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
     price = models.IntegerField()
+
+    def __str__(self):
+        return str(self.time)
+
+class Customer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    fullname = models.CharField(max_length=100)
+    address = models.CharField(max_length=255)
+    phone = models.CharField(max_length=12)
+
+    def __str__(self):
+        return str(self.fullname)
+
+class BookMovie(models.Model): #Đặt vé
+    title = models.ForeignKey(MoviePost, on_delete=models.CASCADE)
     time = models.ManyToManyField('ShowTime', blank=True)
     booked_seats = models.ManyToManyField('Seat', blank=True)
     created = models.DateTimeField(auto_now_add=True)
 
-
     def __str__(self) -> str:
-        return f"{self.title} ({self.price})"
-
-
-class Seat(models.Model):
-    seat_no=models.IntegerField()
-    occupant_first_name=models.CharField(max_length=255)
-    occupant_last_name=models.CharField(max_length=255)
-    occupant_email=models.EmailField(max_length=555)
-    purchase_time=models.DateTimeField(auto_now_add=True)
-
-    def __str__(self) -> str:
-        return f"{self.occupant_first_name}-{self.occupant_last_name} seat_no {self.seat_no}"
+        return f"{self.title} "
 
 
 
-
-class PaymentIntent(models.Model):
-    referrer = models.URLField()
-    movie_title = models.CharField(max_length=255)
-    seat_number = models.CharField(max_length=200)
-
-
-class Payment(models.Model):
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    email = models.EmailField(max_length=255)
-    phone = models.CharField(max_length=255)
-    movie = models.ForeignKey(MoviePost, on_delete=models.SET_NULL, null=True, blank=True)
-    seat_no = models.IntegerField()
 
