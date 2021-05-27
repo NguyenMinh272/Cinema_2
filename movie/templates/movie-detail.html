@@ -25,6 +25,24 @@
                 <div class="row">
                     <div class="col-12 col-lg-7">
                         <p class="mb-3 text-justify" style="text-align: justify!important">{{movie_detail.detail}}</p>
+                        <div class="row mb-3">
+                            <div class="col text-center text-sm-left">
+                                <strong>
+                                    <i class="fe fe-calendar"></i>
+                                    <span class="d-none d-sm-inline-block">Khởi chiếu</span>
+                                    </strong><br>
+                                    <span>{{movie_detail.public_date}}</span>
+                            </div>
+
+                            <div class="col text-center text-sm-left">
+                                <strong>
+                                    <i class="fe fe-clock"></i>
+                                    <span class="d-none d-sm-inline-block">Thời lượng</span>
+                                    </strong><br>
+                                    <span>{{movie_detail.run_length}} phút</span>
+                            </div>
+
+                        </div>
                     </div>
                     <div class="col-12 col-lg-5">
                         <p class="mb-2"  >
@@ -43,6 +61,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 
@@ -72,11 +91,10 @@
         </ul>
     </div>
 </div>
-        <div class="row">
-            <div class="col-md-8  left-box ">
-                <div class="js-video youtube widescreen mb-4">{% video movie_detail.trailer '750x500' %}</div>
+<div class="row">
+    <div class="col-md-8 left-box ">
+        <div class="js-video youtube widescreen mb-4" style="padding-left:120px;">{% video movie_detail.trailer '750x500' %}</div>
+    </div>
+</div>
 
-                </div>
-            </div>
-        </div>
 {% endblock content %}

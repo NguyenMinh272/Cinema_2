@@ -63,6 +63,8 @@ class Seat(models.Model):
         return f"{self.occupant_first_name}-{self.occupant_last_name} seat_no {self.seat_no}"
 
 
+
+
 class PaymentIntent(models.Model):
     referrer = models.URLField()
     movie_title = models.CharField(max_length=255)

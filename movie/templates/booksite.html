@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
@@ -17,9 +18,18 @@
     <label class="title" for="">Booking online</label>
     <select name="" id="film">
        {% for movie in movies %}
-        <option id="{{movie.name}}" {% if forloop.counter == 0 %} selected {% endif %} value="{{movie.price}}">{{movie.title}} ({{movie.price}}.000) </option>
+        <option id="{{movie.title}}" {% if forloop.counter == 0 %} selected {% endif %} value="{{movie.price}}">{{movie.title}} ({{movie.price}}.000) </option>
       {% endfor %}
     </select>
+
+    <select name="" id="film">
+      {% for movie in movies %}
+      {% for t in movie.time.all %}
+        <option id="{{movie.title}}" > {{t.time}}</option>
+      {% endfor %}
+      {% endfor %}
+    </select>
+
   </div>
 
 
@@ -114,7 +124,7 @@
       <br>
       <div class="checkoutTotal">
         <span> Ghế: </span> <span class="sedieTotale"> 0 </span>
-        <span> Tổng : </span> <span class="costo"> 0 </span>
+        <span> Tổng : </span> <span class="costo">  </span>
       </div>
 
       <br>
